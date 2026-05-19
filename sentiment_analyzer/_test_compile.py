@@ -7,6 +7,7 @@ files = [
     "config.py",
     "crawler/weibo_crawler.py",
     "preprocess/cleaner.py",
+    "preprocess/alias_resolver.py",
     "preprocess/segmenter.py",
     "sentiment/analyzer.py",
     "visualize/pie_chart.py",

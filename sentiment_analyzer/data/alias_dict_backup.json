@@ -1,0 +1,217 @@
+{
+  "_schema": "v1.0",
+  "_desc": "别名词典：canonical=规范名, aliases=别名, context_words=消歧词, source=来源",
+  "donk": {
+    "canonical": "donk",
+    "aliases": [
+      "DONK",
+      "洞克",
+      "洞仔",
+      "小驴"
+    ],
+    "context_words": [
+      "步枪",
+      "突破",
+      "MVP",
+      "rt",
+      "rating",
+      "1.61"
+    ],
+    "source": "manual"
+  },
+  "Team_Spirit": {
+    "canonical": "绿龙",
+    "aliases": [
+      "Spirit",
+      "雪碧",
+      "TS",
+      "Team Spirit",
+      "team spirit"
+    ],
+    "context_words": [
+      "冠军",
+      "donk",
+      "shiro",
+      "阿斯塔纳",
+      "PGL"
+    ],
+    "source": "manual"
+  },
+  "m0nesy": {
+    "canonical": "m0nesy",
+    "aliases": [
+      "mONESY",
+      "monesy",
+      "小孩"
+    ],
+    "context_words": [
+      "狙击",
+      "awp",
+      "狙",
+      "残局"
+    ],
+    "source": "manual"
+  },
+  "shiro": {
+    "canonical": "shiro",
+    "aliases": [
+      "Shiro",
+      "若子",
+      "SHIRO"
+    ],
+    "context_words": [
+      "狙击",
+      "狙",
+      "awp"
+    ],
+    "source": "manual"
+  },
+  "magixx": {
+    "canonical": "magixx",
+    "aliases": [
+      "马西西",
+      "Magixx",
+      "马嘻嘻"
+    ],
+    "context_words": [
+      "步枪",
+      "辅助"
+    ],
+    "source": "manual"
+  },
+  "chopper": {
+    "canonical": "chopper",
+    "aliases": [
+      "大超",
+      "Chopper",
+      "超哥"
+    ],
+    "context_words": [
+      "指挥",
+      "队长",
+      "IGL"
+    ],
+    "source": "manual"
+  },
+  "Falcons": {
+    "canonical": "猎鹰",
+    "aliases": [
+      "Falcons",
+      "falcons",
+      "老鹰",
+      "FLC",
+      "法尔孔"
+    ],
+    "context_words": [
+      "niko",
+      "魔男",
+      "m0nesy",
+      "小孩"
+    ],
+    "source": "manual"
+  },
+  "niko": {
+    "canonical": "niko",
+    "aliases": [
+      "Niko",
+      "NIKO",
+      "尼扣"
+    ],
+    "context_words": [
+      "猎鹰",
+      "步枪",
+      "表哥"
+    ],
+    "source": "manual"
+  },
+  "zont1x": {
+    "canonical": "zont1x",
+    "aliases": [
+      "粽子",
+      "zontix"
+    ],
+    "context_words": [
+      "步枪",
+      "辅助"
+    ],
+    "source": "manual"
+  },
+  "kyousuke": {
+    "canonical": "kyousuke",
+    "aliases": [
+      "京介",
+      "恭介"
+    ],
+    "context_words": [
+      "替补",
+      "青训"
+    ],
+    "source": "manual"
+  },
+  "PGL_Astana": {
+    "canonical": "PGL阿斯塔纳",
+    "aliases": [
+      "PGL",
+      "阿斯塔纳",
+      "Astana"
+    ],
+    "context_words": [
+      "2026",
+      "总决赛",
+      "冠军"
+    ],
+    "source": "manual"
+  },
+  "_auto_discovery": [
+    {
+      "word": "现在",
+      "freq": 21,
+      "score": 4.1
+    },
+    {
+      "word": "时候",
+      "freq": 21,
+      "score": 4.1
+    },
+    {
+      "word": "哈利",
+      "freq": 19,
+      "score": 3.9
+    },
+    {
+      "word": "大表哥",
+      "freq": 16,
+      "score": 3.6
+    },
+    {
+      "word": "龙哥",
+      "freq": 16,
+      "score": 3.6
+    },
+    {
+      "word": "什么",
+      "freq": 16,
+      "score": 3.6
+    },
+    {
+      "word": "真的",
+      "freq": 14,
+      "score": 3.4
+    },
+    {
+      "word": "感觉",
+      "freq": 14,
+      "score": 3.4
+    },
+    {
+      "word": "问题",
+      "freq": 13,
+      "score": 3.3
+    },
+    {
+      "word": "荆芥",
+      "freq": 13,
+      "score": 3.3
+    }
+  ]
+}

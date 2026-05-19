@@ -9,11 +9,18 @@ import sys
 # 确保项目根目录在 sys.path 中
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from crawler.weibo_crawler import crawl_comments
+from config import CRAWL_PLATFORM
+
+if CRAWL_PLATFORM == "hupu":
+    from crawler.hupu_crawler import crawl_comments
+else:
+    from crawler.weibo_crawler import crawl_comments
+
 from preprocess.cleaner import clean_comments
+from preprocess.alias_resolver import resolve_comments
 from preprocess.segmenter import segment_comments
-from sentiment.analyzer import analyze_comments
-from visualize.pie_chart import draw_pie_chart, draw_wordclouds
+from sentiment.analyzer import analyze_comments, analyze_per_entity
+from visualize.pie_chart import draw_pie_chart, draw_wordclouds, draw_entity_chart
 
 
 def main():
@@ -31,20 +38,29 @@ def main():
         return
 
     # 2. 清洗
-    print("\n[2/5] 清洗文本...")
+    print("\n[2/6] 清洗文本...")
     clean_comments()
 
-    # 3. 分词 + 词频
-    print("\n[3/5] 分词统计...")
+    # 3. 别名归一化
+    print("\n[3/6] 别名归一化...")
+    resolve_comments()
+
+    # 4. 分词 + 词频
+    print("\n[4/6] 分词统计...")
     segment_comments()
 
-    # 4. 情感分析
-    print("\n[4/5] 情感分析...")
+    # 5. 情感分析
+    print("\n[5/7] 情感分析...")
     analyze_comments()  # 返回 (results, stats, weighted_stats)
 
-    # 5. 可视化
-    print("\n[5/5] 生成图表...")
+    # 6. 实体级情感
+    print("\n[6/7] 实体级情感...")
+    analyze_per_entity()
+
+    # 7. 可视化
+    print("\n[7/7] 生成图表...")
     draw_pie_chart()
+    draw_entity_chart()
     draw_wordclouds()
 
     print("\n" + "=" * 60)

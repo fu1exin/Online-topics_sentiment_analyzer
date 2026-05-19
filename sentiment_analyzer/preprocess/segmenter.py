@@ -5,9 +5,44 @@ segmenter.py —— 中文分词 + 停用词过滤 + 词频统计
 
 import os
 import json
-import jieba
 from collections import Counter
-from config import STOPWORDS_FILE, JIEBA_USER_DICT
+from config import STOPWORDS_FILE, JIEBA_USER_DICT, SEGMENTER_BACKEND, PKUSEG_MODEL
+
+# 延迟加载分词器
+_segger = None
+
+
+def _get_segger():
+    """获取当前分词后端实例"""
+    global _segger
+    if _segger is not None:
+        return _segger
+
+    if SEGMENTER_BACKEND == "pkuseg":
+        try:
+            import pkuseg
+            _segger = pkuseg.pkuseg(model_name=PKUSEG_MODEL)
+            print(f"[分词] 使用 pkuseg ({PKUSEG_MODEL})")
+        except ImportError:
+            print("[分词] pkuseg 未安装，回退到 jieba")
+            import jieba
+            _segger = jieba
+    else:
+        import jieba
+        _segger = jieba
+        print("[分词] 使用 jieba")
+
+    return _segger
+
+
+def _cut_words(text):
+    """对单条文本分词，自动选择后端"""
+    seg = _get_segger()
+    if SEGMENTER_BACKEND == "pkuseg" and hasattr(seg, "cut"):
+        return seg.cut(text)
+    else:
+        import jieba
+        return jieba.lcut(text)
 
 
 def load_stopwords(path=STOPWORDS_FILE):
@@ -40,14 +75,14 @@ def segment_and_count(
     if stopwords is None:
         stopwords = load_stopwords()
 
-    # 可选：加载自定义词典
-    if JIEBA_USER_DICT:
+    # 可选：加载自定义词典（仅 jieba 后端有效）
+    if JIEBA_USER_DICT and SEGMENTER_BACKEND == "jieba":
+        import jieba
         jieba.load_userdict(JIEBA_USER_DICT)
 
     all_words = []
     for text in texts:
-        # jieba 精确模式分词
-        words = jieba.lcut(text)
+        words = _cut_words(text)
         # 过滤：单字、纯数字、停用词
         words = [
             w for w in words

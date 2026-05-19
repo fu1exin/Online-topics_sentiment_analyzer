@@ -11,20 +11,26 @@ config.py —— 舆情洞察员项目全局配置
 # 获取方法：打开B站视频 → 地址栏 /video/BVxxxxx → 把 BV 号贴到
 #   https://api.bilibili.com/x/web-interface/view?bvid=BVxxxxx
 #   返回的 data.aid 就是 oid，加到下面列表。
-BILIBILI_OIDS = [                     # CS2 PGL阿斯塔纳 Team Spirit夺冠 Donk FMVP
-    "116590561462076",   # PGL阿斯塔纳 总决赛 高清 (837评)
-    "116590964115099",   # duck扫片 donk五杀 (743评)
-    "116590427380506",   # Spirit3-0猎鹰 阿斯塔纳 (104评)
-    "116592792830390",   # PGL阿斯塔纳 捧杯时刻 Spirit (3541评)
-    "116590376917245",   # 绿龙3:0猎鹰 虎扑现状 (50评)
-    "116590393690851",   # 绿龙3:0 Falcons 冠军 (51评)
-    "116590444023567",   # donk PGL MVP 1.61rt (9评)
-    "116593145155743",   # 玩机器 donk决赛击杀 (76评)
-    "116591098400559",   # donk第十一枚MVP (37评)
-    "116591484339606",   # 决赛打法分析 (81评)
+BILIBILI_OIDS = [                     # NBA季后赛 活塞4:3骑士 核心球员评价
+    "116593329773534",   # 骑士4:3活塞！重返季后赛 (12272播放)
+    "116595309413990",   # G7骑士活塞全场集锦 (9920播放)
+    "116596383220174",   # 火箭队CC出局分析 (6228播放)
+    "116595024204121",   # 裁判吹罚G7骑士vs活塞 (4018播放)
+    "116587407478917",   # 5月17日骑士VS活塞预测 (8884播放)
+    "116588162326374",   # 5.18NBA季后赛预测骑士vs活塞 (2687播放)
 ]
 TARGET_COUNT = 1000                   # 总目标评论数（多视频之间平均分配）
 BILIBILI_COMMENT_API = "https://api.bilibili.com/x/v2/reply/main"
+
+# ============================================================
+# 平台选择 ("bilibili" | "hupu")
+# ============================================================
+CRAWL_PLATFORM = "bilibili"
+
+# 虎扑帖子ID列表
+HUPU_TOPIC_IDS = [
+    # "631246614",
+]
 
 # 请求头（模拟浏览器）
 HEADERS = {
@@ -51,9 +57,14 @@ POSITIVE_THRESHOLD = 0.6               # >=此值为正向
 NEGATIVE_THRESHOLD = 0.4               # <=此值为负向（中间为中立）
 
 # ============================================================
-# 分词配置
+# 分词 & 情感后端配置
 # ============================================================
-STOPWORDS_FILE = "data/stopwords.txt"  # 停用词表路径（相对于项目根目录）
+# 分词后端: "jieba" (默认) | "pkuseg" (需 Python≤3.12 + pip install pkuseg)
+SEGMENTER_BACKEND = "jieba"
+PKUSEG_MODEL = "web"                   # pkuseg 领域: web/news/medicine/tourism
+# 情感后端: "snownlp" (默认) | "cntext" (需 pip install cntext)
+SENTIMENT_BACKEND = "snownlp"
+STOPWORDS_FILE = "data/stopwords.txt"
 JIEBA_USER_DICT = None                 # 可选：自定义词典路径
 
 # ============================================================

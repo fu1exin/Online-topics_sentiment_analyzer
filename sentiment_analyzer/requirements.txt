@@ -1,5 +1,11 @@
+# 核心依赖
 requests>=2.28
 jieba>=0.42
 snownlp>=0.12
 matplotlib>=3.5
 wordcloud>=1.9
+
+# 可选升级 (Python<=3.12)
+# pkuseg
+# cntext
+# numpy

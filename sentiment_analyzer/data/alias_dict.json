@@ -1,0 +1,195 @@
+{
+  "_schema": "v1.0",
+  "_desc": "NBA 季后赛 活塞vs骑士 别名词典",
+  "Mitchell": {
+    "canonical": "米切尔",
+    "aliases": [
+      "Mitchell",
+      "米球",
+      "蜘蛛侠",
+      "米神"
+    ],
+    "context_words": [
+      "骑士",
+      "得分",
+      "三分",
+      "核心"
+    ],
+    "source": "manual"
+  },
+  "Cunningham": {
+    "canonical": "CC",
+    "aliases": [
+      "Cunningham",
+      "坎宁安",
+      "cc",
+      "状元"
+    ],
+    "context_words": [
+      "活塞",
+      "组织",
+      "突破",
+      "关键"
+    ],
+    "source": "manual"
+  },
+  "Garland": {
+    "canonical": "加兰",
+    "aliases": [
+      "Garland",
+      "加兰德",
+      "Garland"
+    ],
+    "context_words": [
+      "骑士",
+      "后卫",
+      "助攻",
+      "三分"
+    ],
+    "source": "manual"
+  },
+  "Mobley": {
+    "canonical": "莫布里",
+    "aliases": [
+      "Mobley",
+      "莫布利",
+      "莫不理"
+    ],
+    "context_words": [
+      "骑士",
+      "中锋",
+      "防守",
+      "盖帽"
+    ],
+    "source": "manual"
+  },
+  "Allen": {
+    "canonical": "阿伦",
+    "aliases": [
+      "Jarrett Allen",
+      "Allen",
+      "阿伦贾勒特"
+    ],
+    "context_words": [
+      "骑士",
+      "中锋",
+      "篮板",
+      "护框"
+    ],
+    "source": "manual"
+  },
+  "Ivey": {
+    "canonical": "艾维",
+    "aliases": [
+      "Ivey",
+      "Jaden Ivey",
+      "艾薇"
+    ],
+    "context_words": [
+      "活塞",
+      "后卫",
+      "速度",
+      "突破"
+    ],
+    "source": "manual"
+  },
+  "Duren": {
+    "canonical": "杜伦",
+    "aliases": [
+      "Duren",
+      "Jalen Duren",
+      "杜仑"
+    ],
+    "context_words": [
+      "活塞",
+      "中锋",
+      "篮板",
+      "扣篮"
+    ],
+    "source": "manual"
+  },
+  "Cavaliers": {
+    "canonical": "骑士",
+    "aliases": [
+      "Cavaliers",
+      "cavs",
+      "Cavs",
+      "克利夫兰"
+    ],
+    "context_words": [
+      "米切尔",
+      "加兰",
+      "莫布里",
+      "晋级"
+    ],
+    "source": "manual"
+  },
+  "Pistons": {
+    "canonical": "活塞",
+    "aliases": [
+      "Pistons",
+      "pistons",
+      "底特律",
+      "汽车城"
+    ],
+    "context_words": [
+      "CC",
+      "艾维",
+      "杜伦",
+      "坎宁安"
+    ],
+    "source": "manual"
+  },
+  "_auto_discovery": [
+    {
+      "word": "真的",
+      "freq": 6,
+      "score": 2.6
+    },
+    {
+      "word": "问题",
+      "freq": 5,
+      "score": 2.5
+    },
+    {
+      "word": "投篮",
+      "freq": 5,
+      "score": 2.5
+    },
+    {
+      "word": "终于",
+      "freq": 4,
+      "score": 2.4
+    },
+    {
+      "word": "虽然",
+      "freq": 4,
+      "score": 2.4
+    },
+    {
+      "word": "知道",
+      "freq": 4,
+      "score": 2.4
+    },
+    {
+      "word": "不会",
+      "freq": 4,
+      "score": 2.4
+    },
+    {
+      "word": "可能",
+      "freq": 4,
+      "score": 2.4
+    },
+    {
+      "word": "本质",
+      "freq": 4,
+      "score": 2.4
+    },
+    {
+      "word": "为啥",
+      "freq": 3,
+      "score": 2.3
+    }
+  ]
+}

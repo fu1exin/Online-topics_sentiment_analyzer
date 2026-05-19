@@ -116,6 +116,59 @@ def draw_wordclouds(
     _build_wordcloud(neg_texts, "wordcloud_negative.png", "Reds")
 
 
+# ============================================================
+# 实体情感柱状图
+# ============================================================
+
+def draw_entity_chart(results_path="data/sentiment_results.json"):
+    """
+    读取 sentiment_results.json 中的 entity_sentiment，绘制实体情感对比柱状图。
+    输出: output/entity_sentiment.png
+    """
+    if not os.path.exists(results_path):
+        print("[可视化] sentiment_results.json 不存在，跳过实体图")
+        return
+
+    with open(results_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    entity_stats = data.get("entity_sentiment", {})
+    if not entity_stats:
+        print("[可视化] 无 entity_sentiment 数据，跳过")
+        return
+
+    plt.rcParams["font.sans-serif"] = ["Microsoft YaHei"]
+    plt.rcParams["axes.unicode_minus"] = False
+
+    # 按提及次数排序，取前12
+    sorted_entities = sorted(entity_stats.items(), key=lambda x: x[1]["total"], reverse=True)[:12]
+    names = [e[0] for e in sorted_entities]
+    pos_vals = [e[1]["positive"] / e[1]["total"] * 100 for e in sorted_entities]
+    neu_vals = [e[1]["neutral"] / e[1]["total"] * 100 for e in sorted_entities]
+    neg_vals = [e[1]["negative"] / e[1]["total"] * 100 for e in sorted_entities]
+
+    x = range(len(names))
+    fig, ax = plt.subplots(figsize=(12, 5))
+
+    bar_w = 0.55
+    p1 = ax.bar(x, pos_vals, bar_w, color=PIE_COLORS[0], label="正向")
+    p2 = ax.bar(x, neu_vals, bar_w, bottom=pos_vals, color=PIE_COLORS[1], label="中立")
+    p3 = ax.bar(x, neg_vals, bar_w, bottom=[a + b for a, b in zip(pos_vals, neu_vals)], color=PIE_COLORS[2], label="负向")
+
+    ax.set_xticks(x)
+    ax.set_xticklabels(names, rotation=30, ha="right", fontsize=11)
+    ax.set_ylabel("占比 (%)", fontsize=13)
+    ax.set_title("各实体评论情感分布", fontsize=16)
+    ax.legend(loc="upper right", fontsize=11)
+    ax.set_ylim(0, 105)
+
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    out_path = os.path.join(OUTPUT_DIR, "entity_sentiment.png")
+    fig.savefig(out_path, dpi=150, bbox_inches="tight")
+    plt.close(fig)
+    print(f"[可视化] 实体情感图 -> {out_path}")
+
+
 if __name__ == "__main__":
     draw_pie_chart()
     draw_wordclouds()
