@@ -6,7 +6,7 @@ segmenter.py —— 中文分词 + 停用词过滤 + 词频统计
 import os
 import json
 from collections import Counter
-from config import STOPWORDS_FILE, JIEBA_USER_DICT, SEGMENTER_BACKEND, PKUSEG_MODEL
+from config import CLEANED, WORD_FREQ, STOPWORDS_FILE, JIEBA_USER_DICT, SEGMENTER_BACKEND, PKUSEG_MODEL
 
 # 延迟加载分词器
 _segger = None
@@ -99,8 +99,8 @@ def segment_and_count(
 
 
 def segment_comments(
-    cleaned_path="data/cleaned_comments.json",
-    out_path="data/word_freq.json",
+    cleaned_path=CLEANED,
+    out_path=WORD_FREQ,
 ):
     """
     读取清洗后的评论，分词统计，输出高频词JSON。

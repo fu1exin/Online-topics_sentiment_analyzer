@@ -17,7 +17,7 @@ import json
 import os
 import re
 from collections import Counter
-from config import STOPWORDS_FILE
+from config import ALIAS_DICT, CLEANED, STOPWORDS_FILE
 
 
 def _levenshtein(a, b):
@@ -45,7 +45,7 @@ def _levenshtein(a, b):
 class AliasResolver:
     """四层别名归一化引擎"""
 
-    def __init__(self, dict_path="data/alias_dict.json"):
+    def __init__(self, dict_path=ALIAS_DICT):
         self.dict_path = dict_path
         self.entries = {}           # {entry_key: {canonical, aliases, context_words, source}}
         self.alias_map = {}         # {alias_lower: entry_key}  快速查找
@@ -355,6 +355,8 @@ class AliasResolver:
         saved = 0
         with open(self.dict_path, "r", encoding="utf-8") as f:
             data = json.load(f)
+        if "_auto_discovery" not in data:
+            data["_auto_discovery"] = []
 
         existing_auto = {d["word"] for d in data.get("_auto_discovery", [])}
 
@@ -393,9 +395,9 @@ class AliasResolver:
 # ============================================================
 
 def resolve_comments(
-    cleaned_path="data/cleaned_comments.json",
+    cleaned_path=CLEANED,
     out_path=None,
-    dict_path="data/alias_dict.json",
+    dict_path=ALIAS_DICT,
     auto_save=True,
 ):
     """
@@ -445,7 +447,8 @@ def resolve_comments(
     print(f"[别名] 完成。{stats['entities']} 实体, {stats['total_aliases']} 别名 -> {replaced_count} 条替换")
     if discoveries:
         top = discoveries[:5]
-        print(f"  发现候选: {', '.join(d['word']+f'({d['score']:.1f})' for d in top)}")
+        disp = ', '.join(f"{d['word']}({d['score']:.1f})" for d in top)
+        print(f"  发现候选: {disp}")
     if saved:
         print(f"  自动保存 {saved} 个候选")
 

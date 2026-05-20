@@ -7,6 +7,7 @@ analyzer.py —— 情感分析模块
 import json
 import os
 from config import (
+    CLEANED, SENTIMENT, ALIAS_DICT,
     POSITIVE_THRESHOLD, NEGATIVE_THRESHOLD,
     SENTIMENT_BACKEND,
 )
@@ -80,8 +81,8 @@ def _compute_ecdf_weights(likes):
 
 
 def analyze_comments(
-    cleaned_path="data/cleaned_comments.json",
-    out_path="data/sentiment_results.json",
+    cleaned_path=CLEANED,
+    out_path=SENTIMENT,
 ):
     """
     读取清洗后评论，逐条情感打分+分类。
@@ -170,8 +171,8 @@ def analyze_comments(
 
 
 def analyze_per_entity(
-    results_path="data/sentiment_results.json",
-    alias_dict_path="data/alias_dict.json",
+    results_path=SENTIMENT,
+    alias_dict_path=ALIAS_DICT,
 ):
     """
     按实体拆分情感：对每条评论中的每个实体提取上下文窗口独立打分。

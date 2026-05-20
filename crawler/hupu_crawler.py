@@ -14,6 +14,7 @@ import re
 import requests
 from config import (
     HUPU_TOPIC_IDS, HEADERS, TARGET_COUNT,
+    RAW_COMMENTS,
 )
 
 
@@ -36,7 +37,7 @@ def _extract_from_html(html):
     return comments
 
 
-def crawl_hupu_comments_selenium(topic_id, per_count, out_path="data/raw_comments.json"):
+def crawl_hupu_comments_selenium(topic_id, per_count, out_path=RAW_COMMENTS):
     """
     使用 Selenium 爬取虎扑帖子评论。
     需要: pip install selenium + chromedriver
@@ -99,7 +100,7 @@ def crawl_hupu_comments_selenium(topic_id, per_count, out_path="data/raw_comment
     return _write_output(all_comments[:per_count], out_path)
 
 
-def crawl_hupu_comments_static(topic_id, per_count, out_path="data/raw_comments.json"):
+def crawl_hupu_comments_static(topic_id, per_count, out_path=RAW_COMMENTS):
     """静态 HTML 解析（降级方案）"""
     print(f"[虎扑] 静态解析模式: topicId={topic_id}")
 
@@ -142,7 +143,7 @@ def _write_output(comments, out_path):
     return comments
 
 
-def crawl_comments(topic_ids=None, target_count=None, out_path="data/raw_comments.json"):
+def crawl_comments(topic_ids=None, target_count=None, out_path=RAW_COMMENTS):
     """
     虎扑爬虫入口（兼容多平台统一接口）。
     """

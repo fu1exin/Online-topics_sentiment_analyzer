@@ -10,14 +10,14 @@ import matplotlib
 matplotlib.use("Agg")                   # 非交互后端，适合脚本
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
-from config import FONT_PATH, OUTPUT_DIR, PIE_COLORS
+from config import CLEANED, SENTIMENT, FONT_PATH, OUTPUT_DIR, PIE_COLORS
 
 
 # ============================================================
 # 饼图
 # ============================================================
 
-def draw_pie_chart(results_path="data/sentiment_results.json"):
+def draw_pie_chart(results_path=SENTIMENT):
     """
     读取情感分析结果，绘制原始 + ECDF加权 双饼图。
     输出: output/pie_chart.png
@@ -93,8 +93,8 @@ def _build_wordcloud(texts, out_name, colormap):
 
 
 def draw_wordclouds(
-    results_path="data/sentiment_results.json",
-    cleaned_path="data/cleaned_comments.json",
+    results_path=SENTIMENT,
+    cleaned_path=CLEANED,
 ):
     """
     读取情感分析结果和清洗后评论，生成正向/负向词云。
@@ -120,7 +120,7 @@ def draw_wordclouds(
 # 实体情感柱状图
 # ============================================================
 
-def draw_entity_chart(results_path="data/sentiment_results.json"):
+def draw_entity_chart(results_path=SENTIMENT):
     """
     读取 sentiment_results.json 中的 entity_sentiment，绘制实体情感对比柱状图。
     输出: output/entity_sentiment.png

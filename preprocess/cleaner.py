@@ -8,7 +8,7 @@ cleaner.py —— 评论文本清洗 + 质量过滤
 import re
 import json
 import os
-from config import MIN_EFFECTIVE_CHARS, MAX_EMOJI_RATIO, TOPIC_KEYWORDS
+from config import CLEANED, RAW_COMMENTS, MIN_EFFECTIVE_CHARS, MAX_EMOJI_RATIO, TOPIC_KEYWORDS
 
 
 # 纯重复字符模式（如 "哈哈哈哈"、"66666"）
@@ -73,8 +73,8 @@ def is_low_quality(text):
 
 
 def clean_comments(
-    raw_path="data/raw_comments.json",
-    out_path="data/cleaned_comments.json",
+    raw_path=RAW_COMMENTS,
+    out_path=CLEANED,
 ):
     """
     读取原始评论JSON，清洗后写入 cleaned_comments.json。

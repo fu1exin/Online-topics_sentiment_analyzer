@@ -9,7 +9,7 @@ import time
 import os
 from datetime import datetime, timedelta
 import requests
-from config import (
+from config import RAW_COMMENTS, (
     BILIBILI_OIDS, BILIBILI_COMMENT_API, HEADERS,
     TARGET_COUNT, COMMENT_DAYS_LIMIT,
 )
@@ -70,7 +70,7 @@ def _crawl_one_video(oid, per_count, cutoff_ts):
     return comments[:per_count]
 
 
-def crawl_comments(oids=None, target_count=None, out_path="data/raw_comments.json"):
+def crawl_comments(oids=None, target_count=None, out_path=RAW_COMMENTS):
     """
     抓取多个 B站视频的评论，合并去重。
     

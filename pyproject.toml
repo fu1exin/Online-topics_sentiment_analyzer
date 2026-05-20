@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "sentiment-analyzer"
+version = "0.2.0"
+description = "B站/虎扑评论情感分析流水线"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+
+dependencies = [
+    "requests>=2.28",
+    "jieba>=0.42",
+    "snownlp>=0.12",
+    "matplotlib>=3.5",
+    "wordcloud>=1.9",
+]
+
+[project.optional-dependencies]
+selenium = ["selenium>=4"]
+pkuseg = ["pkuseg"]
+cntext = ["cntext"]
+test = ["pytest>=7"]
+
+[project.scripts]
+sentiment-analyzer = "main:main"
+
+[tool.setuptools.packages.find]
+include = ["preprocess*", "crawler*", "sentiment*", "visualize*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]

@@ -3,6 +3,11 @@ config.py —— 舆情洞察员项目全局配置
 所有可调参数集中于此，禁止在其他模块中硬编码。
 """
 
+from pathlib import Path
+
+# 项目根目录锚点（config.py 所在目录 = sentiment_analyzer/）
+BASE_DIR = Path(__file__).parent.resolve()
+
 # ============================================================
 # 爬虫配置
 # ============================================================
@@ -64,12 +69,22 @@ SEGMENTER_BACKEND = "jieba"
 PKUSEG_MODEL = "web"                   # pkuseg 领域: web/news/medicine/tourism
 # 情感后端: "snownlp" (默认) | "cntext" (需 pip install cntext)
 SENTIMENT_BACKEND = "snownlp"
-STOPWORDS_FILE = "data/stopwords.txt"
+STOPWORDS_FILE = str(BASE_DIR / "data" / "stopwords.txt")
 JIEBA_USER_DICT = None                 # 可选：自定义词典路径
 
 # ============================================================
 # 可视化配置
 # ============================================================
 FONT_PATH = "C:/Windows/Fonts/msyh.ttc"  # 中文字体（Windows 微软雅黑）
-OUTPUT_DIR = "output"
+OUTPUT_DIR = str(BASE_DIR / "output")
 PIE_COLORS = ["#4CAF50", "#FFC107", "#F44336"]  # 正向绿 / 中立黄 / 负向红
+
+# ============================================================
+# 数据文件路径（基于 BASE_DIR 的绝对路径，防工作目录漂移）
+# ============================================================
+DATA_DIR      = str(BASE_DIR / "data")
+RAW_COMMENTS  = str(BASE_DIR / "data" / "raw_comments.json")
+CLEANED       = str(BASE_DIR / "data" / "cleaned_comments.json")
+SENTIMENT     = str(BASE_DIR / "data" / "sentiment_results.json")
+WORD_FREQ     = str(BASE_DIR / "data" / "word_freq.json")
+ALIAS_DICT    = str(BASE_DIR / "data" / "alias_dict.json")
